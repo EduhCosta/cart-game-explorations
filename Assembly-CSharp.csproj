@@ -38,6 +38,13 @@
   <ItemGroup>
      <Compile Include="Assets/Scripts/RealTimeParamsController.cs" />
      <Compile Include="Assets/Scripts/SphereCartController.cs" />
+     <Compile Include="Assets/Scripts/CheckpointController.cs" />
+     <Compile Include="Assets/Scripts/Checkpoint.cs" />
+     <Compile Include="Assets/Scripts/CartGameSettings.cs" />
+     <Compile Include="Assets/Scripts/Entities/CheckpointData.cs" />
+     <Compile Include="Assets/Scripts/RaceStorage.cs" />
+     <Compile Include="Assets/Scripts/Handlers/LapHandle.cs" />
+     <Compile Include="Assets/Scripts/Entities/LapData.cs" />
      <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />
      <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets/TextMesh Pro/Shaders/TMP_Bitmap.shader" />

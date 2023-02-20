@@ -351,6 +351,13 @@
 -r:"Library/Bee/artifacts/200b0aE.dag/Unity.VSCode.Editor.ref.dll"
 -r:"Library/Bee/artifacts/200b0aE.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/200b0aE.dag/UnityEngine.UI.ref.dll"
+"Assets/Scripts/CartGameSettings.cs"
+"Assets/Scripts/Checkpoint.cs"
+"Assets/Scripts/CheckpointController.cs"
+"Assets/Scripts/Entities/CheckpointData.cs"
+"Assets/Scripts/Entities/LapData.cs"
+"Assets/Scripts/Handlers/LapHandle.cs"
+"Assets/Scripts/RaceStorage.cs"
 "Assets/Scripts/RealTimeParamsController.cs"
 "Assets/Scripts/SphereCartController.cs"
 -langversion:9.0
