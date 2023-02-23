@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -652,6 +652,7 @@ GameObject:
   - component: {fileID: 345110579}
   - component: {fileID: 345110580}
   - component: {fileID: 345110581}
+  - component: {fileID: 345110582}
   m_Layer: 0
   m_Name: Checkpoint_08
   m_TagString: Checkpoint
@@ -700,6 +701,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CheckpointOrder: 8
+--- !u!114 &345110582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 345110578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4be2fff50e1608545ab6ce43ccd5f2c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &391839064
 GameObject:
   m_ObjectHideFlags: 0
@@ -1461,6 +1474,7 @@ GameObject:
   - component: {fileID: 728038820}
   - component: {fileID: 728038821}
   - component: {fileID: 728038822}
+  - component: {fileID: 728038823}
   m_Layer: 0
   m_Name: Checkpoint_03
   m_TagString: Checkpoint
@@ -1509,6 +1523,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CheckpointOrder: 3
+--- !u!114 &728038823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728038819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4be2fff50e1608545ab6ce43ccd5f2c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &771313261
 GameObject:
   m_ObjectHideFlags: 0
@@ -1520,6 +1546,7 @@ GameObject:
   - component: {fileID: 771313262}
   - component: {fileID: 771313263}
   - component: {fileID: 771313264}
+  - component: {fileID: 771313265}
   m_Layer: 0
   m_Name: Checkpoint_01
   m_TagString: Checkpoint
@@ -1534,14 +1561,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 771313261}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -64.75, y: 0, z: 3.43}
-  m_LocalScale: {x: 1, y: 12.12, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -62.13, y: 0, z: 1.65}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1866574309}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &771313263
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1553,8 +1580,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.869606, y: 1.2670822, z: 21.852663}
-  m_Center: {x: -0.20031357, y: 0, z: -3.5722818}
+  m_Size: {x: 14.1918545, y: 14.778544, z: 2.8845482}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &771313264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1568,6 +1595,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CheckpointOrder: 1
+--- !u!114 &771313265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 771313261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4be2fff50e1608545ab6ce43ccd5f2c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &782996886
 GameObject:
   m_ObjectHideFlags: 0
@@ -1579,6 +1618,7 @@ GameObject:
   - component: {fileID: 782996887}
   - component: {fileID: 782996888}
   - component: {fileID: 782996889}
+  - component: {fileID: 782996890}
   m_Layer: 0
   m_Name: Checkpoint_05
   m_TagString: Checkpoint
@@ -1627,6 +1667,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CheckpointOrder: 5
+--- !u!114 &782996890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 782996886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4be2fff50e1608545ab6ce43ccd5f2c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &787695453
 GameObject:
   m_ObjectHideFlags: 0
@@ -1825,6 +1877,7 @@ GameObject:
   - component: {fileID: 903915546}
   - component: {fileID: 903915547}
   - component: {fileID: 903915548}
+  - component: {fileID: 903915549}
   m_Layer: 0
   m_Name: Checkpoint_04
   m_TagString: Checkpoint
@@ -1873,6 +1926,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CheckpointOrder: 4
+--- !u!114 &903915549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 903915545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4be2fff50e1608545ab6ce43ccd5f2c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &907861170
 GameObject:
   m_ObjectHideFlags: 0
@@ -2060,6 +2125,7 @@ GameObject:
   - component: {fileID: 991211984}
   - component: {fileID: 991211985}
   - component: {fileID: 991211986}
+  - component: {fileID: 991211987}
   m_Layer: 0
   m_Name: Checkpoint_07
   m_TagString: Checkpoint
@@ -2108,6 +2174,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CheckpointOrder: 7
+--- !u!114 &991211987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 991211983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4be2fff50e1608545ab6ce43ccd5f2c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &997283916
 GameObject:
   m_ObjectHideFlags: 0
@@ -2810,6 +2888,7 @@ GameObject:
   - component: {fileID: 1279724404}
   - component: {fileID: 1279724405}
   - component: {fileID: 1279724406}
+  - component: {fileID: 1279724407}
   m_Layer: 0
   m_Name: Checkpoint_06
   m_TagString: Checkpoint
@@ -2858,6 +2937,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CheckpointOrder: 6
+--- !u!114 &1279724407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1279724403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4be2fff50e1608545ab6ce43ccd5f2c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1343522574
 GameObject:
   m_ObjectHideFlags: 0
@@ -3111,6 +3202,7 @@ GameObject:
   - component: {fileID: 1603041072}
   - component: {fileID: 1603041073}
   - component: {fileID: 1603041074}
+  - component: {fileID: 1603041075}
   m_Layer: 0
   m_Name: Checkpoint_02
   m_TagString: Checkpoint
@@ -3159,6 +3251,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CheckpointOrder: 2
+--- !u!114 &1603041075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1603041071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4be2fff50e1608545ab6ce43ccd5f2c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1670175842
 GameObject:
   m_ObjectHideFlags: 0

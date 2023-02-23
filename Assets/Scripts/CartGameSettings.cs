@@ -19,7 +19,7 @@ public class CartGameSettings : MonoBehaviour
   /// </summary>
   private void TagValidationException()
   {
-    if (!gameObject.CompareTag("Player"))
+    if (!PlayerIdentifier.IsPlayer(gameObject))
     {
       throw new Exception("Please, set this GameObject tag as `Player`");
     }
