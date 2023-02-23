@@ -12,4 +12,15 @@ public static class PlayerIdentifier
     {
         return gameObject.CompareTag(PLAYER_TAG);
     }
+
+    public static SphereCartController GetKart(Collider collider)
+    {
+        if (IsPlayer(collider))
+        {
+            GameObject parent = collider.gameObject.transform.parent.gameObject;
+            return parent.GetComponentInChildren<SphereCartController>();
+        }
+
+        return null;
+    }
 }

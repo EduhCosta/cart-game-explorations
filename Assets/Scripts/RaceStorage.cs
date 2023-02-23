@@ -4,158 +4,206 @@ using UnityEngine;
 // Handle racer data
 public class RaceStorage : MonoBehaviour
 {
-  public static RaceStorage Instance { get; private set; }
+    public static RaceStorage Instance { get; private set; }
 
-  private float _currentTime = 0f;
-  private bool _isStartRacer = false;
-  private int _totalCheckpoints = 0;
-  private int _totalLaps = 0;
-  private Queue<LapData> QueueOfLaps = new();
-  private Queue<CheckpointData> QueueOfCheckpoints = new();
+    private float _currentTime = 0f;
+    private bool _isStartRacer = false;
+    private int _totalCheckpoints = 0;
+    private int _totalLaps = 0;
+    private int _currentLap = 1;
+    private Queue<LapData> QueueOfLaps = new();
+    private Queue<CheckpointData> QueueOfCheckpoints = new();
+    private bool _isWrongFlow = false;
 
-  // Same as contructors in pure C#
-  private void Awake()
-  {
-    if (Instance != null && Instance != this)
+    // Same as contructors in pure C#
+    private void Awake()
     {
-      Destroy(gameObject);
-    }
-    else
-    {
-      Instance = this;
-    }
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
 
-    DontDestroyOnLoad(gameObject);
-  }
-
-  private void Start()
-  {
-    // Test
-    StartGame();
-  }
-
-  private void Update()
-  {
-    if (_isStartRacer)
-    {
-      UpdateTimer();
-    }
-  }
-
-  /// <summary>
-  /// Called when race starts, reponsible to set the initial state of game
-  /// </summary>
-  void StartGame()
-  {
-    _isStartRacer = true;
-  }
-
-  /// <summary>
-  /// Update the general timer
-  /// </summary>
-  void UpdateTimer()
-  {
-    _currentTime += Time.deltaTime;
-  }
-
-  /// <summary>
-  /// Called when race ends, reponsible to set the initial state of game
-  /// </summary>
-  public void EndGame()
-  {
-    _currentTime = 0f;
-    _isStartRacer = false;
-    _totalCheckpoints = 0;
-    _totalLaps = 0;
-  }
-
-  /// <summary>
-  /// Set Player data on Storage
-  /// <param name="id">Id of cart.</param>
-  /// <param name="name">Name of cart.</param>
-  /// <param name="checkpoint">Which checkpoit borns this calls.</param>
-  /// </summary>
-  public void RegisterCheckpointByPlayer(string id, string name, int checkpoint)
-  {
-    QueueOfCheckpoints.Enqueue(
-      new CheckpointData(id, name, checkpoint, _currentTime)
-    );
-  }
-
-  /// <summary>
-  /// Define the total number of checkpoints
-  /// </summary>
-  public void SetTotalRacerCheckpoints(int totalCheckpoints)
-  {
-    _totalCheckpoints = totalCheckpoints;
-  }
-
-  /// <summary>
-  /// Return the total number of checkpoints
-  /// </summary>
-  public int GetTotalCheckpoints()
-  {
-    return _totalCheckpoints;
-  }
-
-  /// <summary>
-  /// Define the total number of laps
-  /// </summary>
-  public void SetTotalRaceLap(int totalLaps)
-  {
-    _totalLaps = totalLaps;
-  }
-
-  /// <summary>
-  /// Return a checkpoint queue based on racer Id
-  /// </summary>
-  public Queue<CheckpointData> GetCheckpointsByRacer(string racerId)
-  {
-    Queue<CheckpointData> racerQueue = new();
-
-    foreach (CheckpointData register in QueueOfCheckpoints)
-    {
-      if (register.playerId.Equals(racerId))
-      {
-        racerQueue.Enqueue(register);
-      }
+        DontDestroyOnLoad(gameObject);
     }
 
-    return racerQueue;
-  }
-
-  /// <summary>
-  /// Set end time of the last lap
-  /// </summary>
-  public void SetLastLapTimeStamp(string playerId, int lap)
-  {
-    QueueOfLaps.Enqueue(new LapData(playerId, lap, _currentTime));
-  }
-
-  /// <summary>
-  /// Returns a queue of laps by racer id
-  /// </summary>
-  public Queue<LapData> GetLapsByRacerID(string racerId)
-  {
-    Queue<LapData> lapQueue = new();
-
-    foreach (LapData register in QueueOfLaps)
+    private void Start()
     {
-      if (register.playerId.Equals(racerId))
-      {
-        lapQueue.Enqueue(register);
-      }
+        // Test
+        StartGame();
     }
 
-    return lapQueue;
-  }
+    private void Update()
+    {
+        if (_isStartRacer)
+        {
+            UpdateTimer();
+        }
+    }
 
-  /// <summary>
-  /// Returns end time of the last lap
-  /// </summary>
-  public LapData GetLastLapByRacerID(string racerId)
-  {
-    return GetLapsByRacerID(racerId).Peek();
-  }
+    /// <summary>
+    /// Called when race starts, reponsible to set the initial state of game
+    /// </summary>
+    void StartGame()
+    {
+        _isStartRacer = true;
+    }
 
+    /// <summary>
+    /// Update the general timer
+    /// </summary>
+    void UpdateTimer()
+    {
+        _currentTime += Time.deltaTime;
+    }
+
+    /// <summary>
+    /// Called when race ends, reponsible to set the initial state of game
+    /// </summary>
+    public void EndGame()
+    {
+        _currentTime = 0f;
+        _isStartRacer = false;
+        _totalCheckpoints = 0;
+        _totalLaps = 0;
+    }
+
+    /// <summary>
+    /// Set Player data on Storage
+    /// <param name="id">Id of cart.</param>
+    /// <param name="name">Name of cart.</param>
+    /// <param name="checkpoint">Which checkpoit borns this calls.</param>
+    /// </summary>
+    public void RegisterCheckpointByPlayer(string id, string name, int checkpoint)
+    {
+        QueueOfCheckpoints.Enqueue(
+            new CheckpointData(id, name, checkpoint, _currentTime)
+        );
+    }
+
+    /// <summary>
+    /// Define the total number of checkpoints
+    /// </summary>
+    public void SetTotalRacerCheckpoints(int totalCheckpoints)
+    {
+        _totalCheckpoints = totalCheckpoints;
+    }
+
+    /// <summary>
+    /// Return the total number of checkpoints
+    /// </summary>
+    public int GetTotalCheckpoints()
+    {
+        return _totalCheckpoints;
+    }
+
+    /// <summary>
+    /// Define the total number of laps
+    /// </summary>
+    public void SetTotalRaceLap(int totalLaps)
+    {
+        _totalLaps = totalLaps;
+    }
+
+    /// <summary>
+    /// Return the total number of laps
+    /// </summary>
+    public int GetTotalRaceLap()
+    {
+        return _totalLaps;
+    }
+
+    /// <summary>
+    /// Return a checkpoint queue based on racer Id
+    /// </summary>
+    public Queue<CheckpointData> GetCheckpointsByRacer(string racerId)
+    {
+        Queue<CheckpointData> racerQueue = new();
+
+        foreach (CheckpointData register in QueueOfCheckpoints)
+        {
+            if (register.playerId.Equals(racerId))
+            {
+            racerQueue.Enqueue(register);
+            }
+        }
+
+        return racerQueue;
+    }
+
+    /// <summary>
+    /// Set end time of the last lap
+    /// </summary>
+    public void SetLastLapTimeStamp(string playerId, int lap)
+    {
+        QueueOfLaps.Enqueue(new LapData(playerId, lap, _currentTime));
+    }
+
+    /// <summary>
+    /// Returns a queue of laps by racer id
+    /// </summary>
+    public Queue<LapData> GetLapsByRacerID(string racerId)
+    {
+        Queue<LapData> lapQueue = new();
+
+        foreach (LapData register in QueueOfLaps)
+        {
+            if (register.playerId.Equals(racerId))
+            {
+            lapQueue.Enqueue(register);
+            }
+        }
+
+        return lapQueue;
+    }
+
+    /// <summary>
+    /// Returns last lap of queue
+    /// </summary>
+    public LapData GetLastLapByRacerID(string racerId)
+    {
+        if (GetLapsByRacerID(racerId).ToArray().Length > 0)
+        {
+            LapData[] arr = GetLapsByRacerID(racerId).ToArray();
+            LapData lastElement = arr[arr.Length - 1];
+            return lastElement;
+        }
+
+        return null;
+    }
+
+    /// <summary>
+    /// Returns the current lap
+    /// </summary>
+    public int GetCurrentLap()
+    {
+        return _currentLap;
+    }
+
+    /// <summary>
+    /// Define the current lap
+    /// </summary>
+    public void SetCurrentLap(int currentLap)
+    {
+        _currentLap = currentLap;
+    }
+
+    /// <summary>
+    /// Returns the _isWrongFlow
+    /// </summary>
+    public bool GetIsWorngFlow()
+    {
+        return _isWrongFlow;
+    }
+
+    /// <summary>
+    /// Define the _isWrongFlow
+    /// </summary>
+    public void SetIsWorngFlow(bool isWrongFlow)
+    {
+        _isWrongFlow = isWrongFlow;
+    }
 }

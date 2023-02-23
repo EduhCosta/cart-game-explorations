@@ -27,6 +27,8 @@ public class LapHandler : MonoBehaviour
         _currentLap++;
       }
 
+      RaceStorage.Instance.SetCurrentLap(_currentLap);
+
       if (_currentLap - 1 == LapQuantity)
       {
         Debug.Log("Corrida encerrada");
