@@ -13,6 +13,7 @@ public class RaceStorage : MonoBehaviour
     private int _currentLap = 1;
     private Queue<LapData> QueueOfLaps = new();
     private Queue<CheckpointData> QueueOfCheckpoints = new();
+    private Queue<RaceCheckpoint> QueueOfRaceCheckpoints = new();
     private bool _isWrongFlow = false;
 
     // Same as contructors in pure C#
@@ -205,5 +206,21 @@ public class RaceStorage : MonoBehaviour
     public void SetIsWorngFlow(bool isWrongFlow)
     {
         _isWrongFlow = isWrongFlow;
+    }
+
+    /// <summary>
+    /// Set all race checkpoints
+    /// </summary>
+    public void SetRaceCheckpoints(Queue<RaceCheckpoint> checkpoints)
+    {
+        QueueOfRaceCheckpoints = checkpoints;
+    }
+
+    /// <summary>
+    /// Retrun all checkpoints of Race
+    /// </summary>
+    public Queue<RaceCheckpoint> GetRaceCheckpoints()
+    {
+        return QueueOfRaceCheckpoints;
     }
 }

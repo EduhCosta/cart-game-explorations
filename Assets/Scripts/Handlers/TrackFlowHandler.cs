@@ -16,8 +16,14 @@ public class TrackFlowHandler : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-
-        IsWrongFlow = PlayerIdentifier.IsPlayer(other) && IsWrongForwardAngle(PlayerIdentifier.GetKart(other).transform);
+        if (PlayerIdentifier.IsPlayer(other))
+        {
+            IsWrongFlow = IsWrongForwardAngle(PlayerIdentifier.GetKart(other).transform);
+        } 
+        else if (AIIdentifier.IsAI(other))
+        {
+            IsWrongFlow = IsWrongForwardAngle(AIIdentifier.GetAIKart(other).transform);
+        }
     }
 
     private bool IsWrongForwardAngle(Transform player)

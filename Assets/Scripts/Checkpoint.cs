@@ -7,7 +7,7 @@ public class Checkpoint : MonoBehaviour
 
   private void OnTriggerEnter(Collider other)
   {
-    if (PlayerIdentifier.IsPlayer(other))
+    if (PlayerIdentifier.IsPlayer(other) || AIIdentifier.IsAI(other))
     {
       CartGameSettings cart = other.GetComponentInParent<CartGameSettings>();
       string id = cart.GetPlayerId();

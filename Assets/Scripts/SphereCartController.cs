@@ -59,19 +59,19 @@ public class SphereCartController : MonoBehaviour
         _currentRotation = Mathf.Lerp(_currentRotation, _rotation, Time.deltaTime * 4f);
     }
 
-  void FixedUpdate()
-  {
-    // Run
-    SphereCollider.AddForce(transform.forward * _currentSpeed, ForceMode.Acceleration);
+    void FixedUpdate()
+    {
+        // Run
+        SphereCollider.AddForce(transform.forward * _currentSpeed, ForceMode.Acceleration);
 
-    //Gravity
-    SphereCollider.AddForce(Vector3.down * Gravity, ForceMode.Acceleration);
+        //Gravity
+        SphereCollider.AddForce(Vector3.down * Gravity, ForceMode.Acceleration);
 
-    // Steering
-    transform.eulerAngles = Vector3.Lerp(
-        transform.eulerAngles,
-        new Vector3(0, transform.eulerAngles.y + _currentRotation, 0),
-        Time.deltaTime * 5f
-    );
-  }
+        // Steering
+        transform.eulerAngles = Vector3.Lerp(
+            transform.eulerAngles,
+            new Vector3(0, transform.eulerAngles.y + _currentRotation, 0),
+            Time.deltaTime * 5f
+        );
+    }
 }

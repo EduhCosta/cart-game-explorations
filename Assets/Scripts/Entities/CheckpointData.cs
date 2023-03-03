@@ -12,4 +12,9 @@ public class CheckpointData
     checkpointOrder = _checkpointOrder;
     timeStamp = _timeStamp;
   }
+
+    public override string ToString()
+    {
+        return $"(CheckpointData) Checkpoint {checkpointOrder} - {playerName}: {playerId}";
+    }
 }

@@ -23,4 +23,20 @@ public static class PlayerIdentifier
 
         return null;
     }
+
+    public static AICartController GetAIKart(Collider collider)
+    {
+        if (IsPlayer(collider))
+        {
+            GameObject parent = collider.gameObject.transform.parent.gameObject;
+            return parent.GetComponentInChildren<AICartController>();
+        }
+
+        return null;
+    }
+
+    public static string GetPlayerId(GameObject gameObject)
+    {
+        return gameObject.GetComponentInParent<CartGameSettings>().GetPlayerId();
+    }
 }

@@ -56,17 +56,25 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Interfaces\IKartActions.cs" />
     <Compile Include="Assets\Scripts\Handlers\LapHandler.cs" />
     <Compile Include="Assets\Scripts\Utils\PlayerIdentifier.cs" />
     <Compile Include="Assets\Scripts\Entities\LapData.cs" />
+    <Compile Include="Assets\Scripts\Utils\AIIdentifier.cs" />
     <Compile Include="Assets\Scripts\CartGameSettings.cs" />
     <Compile Include="Assets\Scripts\RaceStorage.cs" />
     <Compile Include="Assets\Scripts\CheckpointController.cs" />
+    <Compile Include="Assets\Scripts\AI\AICartController.cs" />
+    <Compile Include="Assets\Scripts\Entities\RaceCheckpoint.cs" />
     <Compile Include="Assets\Scripts\Entities\CheckpointData.cs" />
+    <Compile Include="Assets\Scripts\AI\AIDecisionHandler.cs" />
     <Compile Include="Assets\Scripts\Handlers\TrackFlowHandler.cs" />
+    <Compile Include="Assets\Scripts\AI\AIInputController.cs" />
     <Compile Include="Assets\Scripts\RealTimeParamsController.cs" />
     <Compile Include="Assets\Scripts\SphereCartController.cs" />
     <Compile Include="Assets\Scripts\Checkpoint.cs" />
+    <Compile Include="Assets\Scripts\Entities\Obstacle.cs" />
+    <Compile Include="Assets\Scripts\Stores\ObstacleStore.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -737,6 +745,9 @@
     <Reference Include="Unity.TestTools.CodeCoverage.Editor.OpenCover.Model">
       <HintPath>Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.OpenCover.Model.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Toolchain.Win-x86_64-Linux-x86_64">
+      <HintPath>Library\ScriptAssemblies\Unity.Toolchain.Win-x86_64-Linux-x86_64.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
     </Reference>
@@ -757,6 +768,9 @@
     </Reference>
     <Reference Include="Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection">
       <HintPath>Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Sysroot.Linux_x86_64">
+      <HintPath>Library\ScriptAssemblies\Unity.Sysroot.Linux_x86_64.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Flow">
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>
@@ -781,6 +795,9 @@
     </Reference>
     <Reference Include="Unity.VisualScripting.Core">
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.SysrootPackage.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.SysrootPackage.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.EditorCoroutines.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.EditorCoroutines.Editor.dll</HintPath>
