@@ -63,18 +63,21 @@
     <Compile Include="Assets\Scripts\Utils\AIIdentifier.cs" />
     <Compile Include="Assets\Scripts\CartGameSettings.cs" />
     <Compile Include="Assets\Scripts\RaceStorage.cs" />
-    <Compile Include="Assets\Scripts\CheckpointController.cs" />
+    <Compile Include="Assets\Scripts\Controllers\CheckpointController.cs" />
     <Compile Include="Assets\Scripts\AI\AICartController.cs" />
     <Compile Include="Assets\Scripts\Entities\RaceCheckpoint.cs" />
     <Compile Include="Assets\Scripts\Entities\CheckpointData.cs" />
+    <Compile Include="Assets\Scripts\Stores\ObstacleStore.cs" />
+    <Compile Include="Assets\Scripts\Utils\ExtensionMethods.cs" />
     <Compile Include="Assets\Scripts\AI\AIDecisionHandler.cs" />
+    <Compile Include="Assets\Scripts\Controllers\RacersController.cs" />
     <Compile Include="Assets\Scripts\Handlers\TrackFlowHandler.cs" />
+    <Compile Include="Assets\Scripts\AI\AITrackView.cs" />
     <Compile Include="Assets\Scripts\AI\AIInputController.cs" />
     <Compile Include="Assets\Scripts\RealTimeParamsController.cs" />
     <Compile Include="Assets\Scripts\SphereCartController.cs" />
-    <Compile Include="Assets\Scripts\Checkpoint.cs" />
     <Compile Include="Assets\Scripts\Entities\Obstacle.cs" />
-    <Compile Include="Assets\Scripts\Stores\ObstacleStore.cs" />
+    <Compile Include="Assets\Scripts\Checkpoint.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

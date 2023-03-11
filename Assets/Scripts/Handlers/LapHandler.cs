@@ -4,37 +4,36 @@ using UnityEngine;
 
 public class LapHandler : MonoBehaviour
 {
-  [Header("Race Settings")]
-  [SerializeField] public int LapQuantity = 0;
+    [Header("Race Settings")]
+    [SerializeField] public int LapQuantity = 0;
 
-  private int _currentLap = 1;
+    private int _currentLap = 1;
 
-  private void Start()
-  {
-    RaceStorage.Instance.SetTotalRaceLap(LapQuantity);
-  }
-
-  private void OnTriggerEnter(Collider other)
-  {
-    if (PlayerIdentifier.IsPlayer(other))
+    private void Start()
     {
-      CartGameSettings cart = other.GetComponentInParent<CartGameSettings>();
-      string racerId = cart.GetPlayerId();
-
-      if (ValidateCheckpointCounter(racerId))
-      {
-        RaceStorage.Instance.SetLastLapTimeStamp(racerId, _currentLap);
-        _currentLap++;
-      }
-
-      RaceStorage.Instance.SetCurrentLap(_currentLap);
-
-      if (_currentLap - 1 == LapQuantity)
-      {
-        Debug.Log("Corrida encerrada");
-      }
+        RaceStorage.Instance.SetTotalRaceLap(LapQuantity);
+        RaceStorage.Instance.SetLapHandler(GetComponent<LapHandler>());
     }
-  }
+
+private void OnTriggerEnter(Collider other)
+{
+    if (PlayerIdentifier.IsPlayer(other) || AIIdentifier.IsAI(other))
+    {
+        CartGameSettings cart = other.GetComponentInParent<CartGameSettings>();
+        string racerId = cart.GetPlayerId();
+
+        if (ValidateCheckpointCounter(racerId))
+        {
+            RaceStorage.Instance.SetLastLapTimeStamp(racerId, _currentLap);
+            RaceStorage.Instance.UpdateCurrentLapByRacer(racerId);
+        }
+
+        if (RaceStorage.Instance.GetCurrentLapByRacer(racerId).lapDone == LapQuantity)
+        {
+            Debug.Log("Corrida encerrada");
+        }
+    }
+}
 
   private bool ValidateCheckpointCounter(string racerId)
   {

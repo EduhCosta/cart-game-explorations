@@ -28,4 +28,9 @@ public static class AIIdentifier
     {
         return gameObject.GetComponentInParent<CartGameSettings>().GetPlayerId();
     }
+
+    public static string GetName(GameObject gameObject)
+    {
+        return gameObject.GetComponentInParent<CartGameSettings>().PlayerName;
+    }
 }

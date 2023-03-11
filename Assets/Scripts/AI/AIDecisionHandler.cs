@@ -1,27 +1,23 @@
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
 
 public class AIDecisionHandler : MonoBehaviour
 {
     // Temporary
-    [SerializeField] public float OverlapRadius = 5f;
-    [SerializeField] public int CheckableAheadDistance = 10;
-    [SerializeField] LayerMask Mask;
+    [SerializeField] public float AngleToAnalysis = 15f;
+    [SerializeField] public float CheckableAheadDistance = 10f;
+    [SerializeField] LayerMask ObstacleMask;
+    [SerializeField] LayerMask CornerPitMask;
 
     // Exposed values
-    public List<Obstacle> ObstacleList = new List<Obstacle>();
+    public List<int> BlockedDirections = new();
     public float AngleToNextCheckpointForward = 0;
+    public int DirectionToCentralize = 0;
 
     private Queue<RaceCheckpoint> _checkpoints;
     private string _playerId;
-
-    private void OnDrawGizmos()
-    {
-        // Draws OverlapRadius sphere
-        Gizmos.color = Color.white;
-        Gizmos.DrawWireSphere(transform.position, OverlapRadius);
-    }
+    private int _currentLap;
+    private LapHandler _lapHandler;
 
     private void Start()
     {
@@ -31,36 +27,11 @@ public class AIDecisionHandler : MonoBehaviour
 
     private void Update()
     {
-        TrackObstacles();
+        if (_checkpoints.Count == 0) _checkpoints = RaceStorage.Instance.GetRaceCheckpoints();
+        _currentLap = RaceStorage.Instance.GetCurrentLapByRacer(_playerId).lapDone;
+        _lapHandler = RaceStorage.Instance.GetLapHandler();
+
         AlignNextCheckpointForward(_playerId);
-    }
-
-    /// <summary>
-    /// Responsible for identify distance and angle of all colliders into Overlap Sphere.
-    /// </summary>
-    private void TrackObstacles()
-    {
-        RaycastHit[] hits = Physics.SphereCastAll(transform.position, OverlapRadius, transform.forward, CheckableAheadDistance, Mask.value);
-        Collider[] hitColliders = hits.Select(x => x.collider).ToArray();
-        List<Obstacle> obstacles = new List<Obstacle>();
-
-        foreach (Collider hitCollider in hitColliders)
-        {
-            // Idenfity the closest point of obstacle collider to the cart
-            Vector3 closestPointToCart = hitCollider.ClosestPoint(transform.position);
-            float distance = Vector3.Distance(transform.position, closestPointToCart);
-            Debug.Log(distance);
-
-            // Idenfity the angle of obstacle related of cart forward
-            Vector3 targetDirection = transform.position - closestPointToCart;
-            float angle = Vector3.SignedAngle(targetDirection, transform.forward, Vector3.up);
-            Debug.Log(angle);
-
-            obstacles.Add(new Obstacle(hitCollider, distance, angle, hitCollider.gameObject.layer));
-        }
-
-        // Order the obstacles by the closest one
-        ObstacleList = obstacles.OrderBy(a => a.Distance).ToList();
     }
 
     /// <summary>
@@ -70,9 +41,16 @@ public class AIDecisionHandler : MonoBehaviour
     private void AlignNextCheckpointForward(string playerId)
     {
         Queue<CheckpointData> racerCheckpoints = RaceStorage.Instance.GetCheckpointsByRacer(playerId);
-        
-        int indexOfNextCheckpoint = racerCheckpoints.Count;
-        Vector3 nextCheckpointForward = _checkpoints.ToArray()[indexOfNextCheckpoint].forward;
+
+        int indexOfNextCheckpoint = racerCheckpoints.Count - (_checkpoints.Count * (_currentLap - 1));
+
+        // Debug.Log($"{AIIdentifier.GetName(gameObject)} [{_currentLap}] - {indexOfNextCheckpoint}; {_checkpoints.Count}");
+
+        Vector3 nextCheckpointForward =
+            _checkpoints.Count > 0 && racerCheckpoints.Count % _checkpoints.Count == 0 ? // If the cart pass on checkpoint
+                _lapHandler.gameObject.transform.forward : // The cart shuold go to lapHandler element 
+                _checkpoints.ToArray()[indexOfNextCheckpoint].forward; // Case false, going to next checkpoint
+
         float angle = Vector3.SignedAngle(nextCheckpointForward, transform.forward, Vector3.up);
 
         AngleToNextCheckpointForward = angle;

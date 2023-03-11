@@ -1,7 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.Progress;
+using static UnityEngine.GraphicsBuffer;
 
 public class AIInputController : MonoBehaviour
 {
@@ -10,105 +14,53 @@ public class AIInputController : MonoBehaviour
     const int NEUTRAL = 0;
 
     private string _aiId;
-    private Obstacle[] _obstacles = new Obstacle[0];
-    private float _distanceToCollision;
     private float _forwardAngleToNextCheckpoint;
 
     public float Direction = 0;
     public float Accelerate = 0;
 
-    void Start()
+    private CheckpointData[] _aICheckpointsDone;
+    private int currentCheckpoint = 1;
+
+    void OnEnable()
     {
-        _distanceToCollision = GetComponent<AIDecisionHandler>().CheckableAheadDistance;
         _aiId = AIIdentifier.GetAIId(gameObject);
     }
 
     void Update()
     {
-        _obstacles = GetComponent<AIDecisionHandler>().ObstacleList.ToArray();
+        _aICheckpointsDone = RaceStorage.Instance.GetCheckpointsByRacer(_aiId).ToArray();
         _forwardAngleToNextCheckpoint = GetComponent<AIDecisionHandler>().AngleToNextCheckpointForward;
-
-        if (hasObstacles())
-        {
-            TakeDirectionByObstacle();
-        }
-        else
-        {
-            KeepDirectionToForward();
-        }
-
-        KeepAccelerating(_aiId);
+        
+        Accelerate = GoToNextPoint();
+        Direction = KeepDirectionToNextCheckpoint();
     }
 
-    // If (angle > 0 && angle <= 180) - Go to left
-    // If (angle < 0 && angle >= -180) - Go to right
-    public void KeepDirectionToForward()
+    private int GoToNextPoint()
+    {
+        if (Array.Exists(_aICheckpointsDone, c => c.checkpointOrder == currentCheckpoint))
+        {
+            currentCheckpoint++;
+        } 
+        else
+        {
+            return  1;
+        }
+
+        return 0;
+    }
+
+    public int KeepDirectionToNextCheckpoint()
     {
         if (_forwardAngleToNextCheckpoint > 0 && _forwardAngleToNextCheckpoint <= 190)
         {
-            Direction = TURN_LEFT;
+            return TURN_LEFT;
         }
         else if (_forwardAngleToNextCheckpoint < 0 && _forwardAngleToNextCheckpoint >= -180)
         {
-            Direction = TURN_RIGHT;
-        }
-        else
-        {
-            Direction = NEUTRAL;
-        }
-    }
-
-    private bool hasObstacles()
-    {
-        return _obstacles != null && _obstacles.Length > 0;
-    }
-
-    /// <summary>
-    /// According of the closest obstacle take right direction to avoid it
-    /// </summary>
-    public void TakeDirectionByObstacle()
-    {
-        Obstacle closestObstacle = _obstacles[0];
-        float angle = closestObstacle.AngleToHit;
-
-        // Colliders hit the sphere
-        if (closestObstacle.Distance < _distanceToCollision)
-        {
-            // If angle is equal to 180, select randomly a side SphereCast to select the side??
-            if (angle == 180)
-            {
-                Direction = TURN_RIGHT;
-            }
-            // If angle is positive turn left
-             if (angle > 0)
-            {
-                Direction = TURN_LEFT;
-            }
-            // If angle is legative turn right
-            else if (angle < 0)
-            {
-                Direction = TURN_RIGHT;
-            }
-        }
-    }
-
-    /// <summary>
-    /// While not pass for the last checkpoint the AI keep acelerating
-    /// </summary>
-    /// <param name="aiId"></param>
-    private void KeepAccelerating(string aiId)
-    {
-        int totalCheckpoins = RaceStorage.Instance.GetTotalCheckpoints();
-        Queue<CheckpointData> checkpointsDone = RaceStorage.Instance.GetCheckpointsByRacer(aiId);
-        // While not pass all checkpoints keep acelerating
-        if (checkpointsDone.ToArray().Length < totalCheckpoins)
-        {
-            Accelerate = 1;
-            return;
+            return TURN_RIGHT;
         }
 
-        Accelerate = 0;
+        return NEUTRAL;
     }
-
-
 }

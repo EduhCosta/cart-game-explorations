@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 // Handle racer data
@@ -15,12 +17,16 @@ public class RaceStorage : MonoBehaviour
     private Queue<CheckpointData> QueueOfCheckpoints = new();
     private Queue<RaceCheckpoint> QueueOfRaceCheckpoints = new();
     private bool _isWrongFlow = false;
+    private LapHandler _lapHandler;
+    private CartGameSettings[] _racers;
+    private List<LapData> _currentLapByRacer = new();
 
     // Same as contructors in pure C#
     private void Awake()
     {
         if (Instance != null && Instance != this)
         {
+            Debug.LogError("More than one instance of a singleton");
             Destroy(gameObject);
         }
         else
@@ -128,7 +134,7 @@ public class RaceStorage : MonoBehaviour
         {
             if (register.playerId.Equals(racerId))
             {
-            racerQueue.Enqueue(register);
+                racerQueue.Enqueue(register);
             }
         }
 
@@ -154,7 +160,7 @@ public class RaceStorage : MonoBehaviour
         {
             if (register.playerId.Equals(racerId))
             {
-            lapQueue.Enqueue(register);
+                lapQueue.Enqueue(register);
             }
         }
 
@@ -222,5 +228,65 @@ public class RaceStorage : MonoBehaviour
     public Queue<RaceCheckpoint> GetRaceCheckpoints()
     {
         return QueueOfRaceCheckpoints;
+    }
+
+    /// <summary>
+    /// Returns the track LapHandler
+    /// </summary>
+    public LapHandler GetLapHandler()
+    {
+        return _lapHandler;
+    }
+
+    /// <summary>
+    /// Save the lapHandler on storage
+    /// </summary>
+    /// <param name="lapHandler">Game object which control the laps</param>
+    public void SetLapHandler(LapHandler lapHandler)
+    {
+        _lapHandler = lapHandler;
+    }
+
+    /// <summary>
+    /// Define the runners on race
+    /// </summary>
+    public void SetRacers(CartGameSettings[] racers)
+    {
+        _racers = racers;
+    }
+
+    /// <summary>
+    /// Return the  runners on race
+    /// </summary>
+    public CartGameSettings[] GetRacers()
+    {
+        return _racers;
+    }
+
+    public void UpdateCurrentLapByRacer(string playerId)
+    {
+        if (_currentLapByRacer.Exists(r => r.playerId == playerId))
+        {
+            int index = _currentLapByRacer.FindIndex(e => e.playerId == playerId);
+            int nextLap = _currentLapByRacer[index].lapDone + 1;
+            _currentLapByRacer.Insert(index, new LapData(playerId, nextLap, _currentTime));
+        }
+        else
+        {
+            LapData element = new LapData(playerId, 1, _currentTime);
+            _currentLapByRacer.Add(element);
+        }
+    }
+
+    public LapData GetCurrentLapByRacer(string playerId)
+    {
+        if (!_currentLapByRacer.Exists(r => r.playerId == playerId))
+        {
+            UpdateCurrentLapByRacer(playerId);
+            GetCurrentLapByRacer(playerId);
+            return null;
+        }
+
+        return _currentLapByRacer.Find(e => e.playerId == playerId);
     }
 }

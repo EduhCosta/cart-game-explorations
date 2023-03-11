@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Checkpoint
   - AI
+  - track
   layers:
   - Default
   - TransparentFX
@@ -14,8 +15,8 @@ TagManager:
   - Water
   - UI
   - Obstable
-  - 
-  - 
+  - CornerPit
+  - Map
   - 
   - 
   - 

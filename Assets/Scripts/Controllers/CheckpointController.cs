@@ -6,9 +6,10 @@ using Unity.VisualScripting;
 
 public class CheckpointController : MonoBehaviour
 {
-
+    // This is there because is setting global configs and needs run after the Aweke, which is the singleton borns
     private void Start()
     {
+        Debug.Log(transform.childCount);
         // Set on storage the total number of checkpoints
         RaceStorage.Instance.SetTotalRacerCheckpoints(transform.childCount);
 
@@ -22,6 +23,7 @@ public class CheckpointController : MonoBehaviour
 
         RaceStorage.Instance.SetRaceCheckpoints(raceCheckpoints);
     }
+
     private void FixedUpdate()
     {
         IdentifyWrongFlowByAllCheckpoints();
