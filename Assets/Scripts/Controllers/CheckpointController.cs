@@ -9,7 +9,7 @@ public class CheckpointController : MonoBehaviour
     // This is there because is setting global configs and needs run after the Aweke, which is the singleton borns
     private void Start()
     {
-        Debug.Log(transform.childCount);
+        // Debug.Log(transform.childCount);
         // Set on storage the total number of checkpoints
         RaceStorage.Instance.SetTotalRacerCheckpoints(transform.childCount);
 
@@ -18,6 +18,7 @@ public class CheckpointController : MonoBehaviour
         Queue<RaceCheckpoint> raceCheckpoints = new();
         foreach (Checkpoint checkpoint in allCheckpoint)
         {
+            Debug.Log(checkpoint.transform.forward);
             raceCheckpoints.Enqueue(new RaceCheckpoint(checkpoint));
         }
 

@@ -289,4 +289,12 @@ public class RaceStorage : MonoBehaviour
 
         return _currentLapByRacer.Find(e => e.playerId == playerId);
     }
+
+    /// <summary>
+    /// Returns the current clock of race
+    /// </summary>
+    public float GetCurrentTime()
+    {
+        return _currentTime;
+    }
 }

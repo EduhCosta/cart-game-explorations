@@ -108,8 +108,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03e85a82ceb42449cac9bc39ebfbe03e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerId: 
   PlayerName: Thaynan
+  _playerId: 
+  _cartWidth: 0
 --- !u!1 &9203618264135550310
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,14 +136,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9203618264135550310}
-  m_LocalRotation: {x: 0.14438973, y: -0.004452761, z: 0.00064955984, w: 0.9895107}
-  m_LocalPosition: {x: -0.02, y: 1.69, z: -3.56}
+  m_LocalRotation: {x: 0.10845673, y: -0.0044263103, z: 0.00081040413, w: 0.994091}
+  m_LocalPosition: {x: -0.02, y: 2.8, z: -5.3}
   m_LocalScale: {x: 1, y: 1.8084203, z: 1.0413941}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9203618264384512264}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 12.453, y: -0.506, z: 0.038}
 --- !u!20 &9203618264135550312
 Camera:
   m_ObjectHideFlags: 0
@@ -167,7 +168,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 100
+  far clip plane: 200
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -276,6 +277,8 @@ MonoBehaviour:
   Acceleration: 80
   Steering: 30
   Gravity: 10
+  BoostAcceleration: 60
+  CurrentSpeed: 0
 --- !u!1001 &9203618262712607424
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -9,7 +9,7 @@ public class TrackFlowHandler : MonoBehaviour
     private void OnDrawGizmos()
     {
         // Draws a 5 unit long red line in front of the object
-        Gizmos.color = Color.red;
+        Gizmos.color = Color.blue;
         Vector3 direction = transform.TransformDirection(Vector3.forward) * 5;
         Gizmos.DrawRay(transform.position, direction);
     }
