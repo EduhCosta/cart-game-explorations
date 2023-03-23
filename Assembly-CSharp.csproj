@@ -82,6 +82,7 @@
     <Compile Include="Assets\SplineMesh\Scripts\Example\ExampleGrowingRoot.cs" />
     <Compile Include="Assets\SplineMesh\Scripts\Bezier\CubicBezierCurve.cs" />
     <Compile Include="Assets\SplineMesh\Scripts\MeshProcessing\SplineMeshTiling.cs" />
+    <Compile Include="Assets\Scripts\HUD\SetLap.cs" />
     <Compile Include="Assets\Scripts\Utils\ExtensionMethods.cs" />
     <Compile Include="Assets\Scripts\AI\AIDecisionHandler.cs" />
     <Compile Include="Assets\SplineMesh\Scripts\MeshProcessing\MeshVertex.cs" />
@@ -103,9 +104,8 @@
     <Compile Include="Assets\Scripts\Entities\Obstacle.cs" />
     <Compile Include="Assets\Scripts\Actions\CheckpointActions.cs" />
     <Compile Include="Assets\Scripts\Checkpoint.cs" />
-    <Compile Include="Assets\SplineMesh\Scripts\Bezier\SplineSmoother.cs" />
-    <Compile Include="Assets\Scripts\HUD\SetLap.cs" />
     <Compile Include="Assets\Scripts\HUD\SetTime.cs" />
+    <Compile Include="Assets\SplineMesh\Scripts\Bezier\SplineSmoother.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -762,6 +762,9 @@
     <Reference Include="Unity.VSCode.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.VisualScripting.Shared.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.Shared.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
@@ -774,8 +777,11 @@
     <Reference Include="Unity.TestTools.CodeCoverage.Editor.OpenCover.Model">
       <HintPath>Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.OpenCover.Model.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Sysroot.Linux_x86_64">
-      <HintPath>Library\ScriptAssemblies\Unity.Sysroot.Linux_x86_64.dll</HintPath>
+    <Reference Include="Unity.Toolchain.Win-x86_64-Linux-x86_64">
+      <HintPath>Library\ScriptAssemblies\Unity.Toolchain.Win-x86_64-Linux-x86_64.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Timeline.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
       <HintPath>Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
@@ -795,6 +801,9 @@
     <Reference Include="Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection">
       <HintPath>Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Sysroot.Linux_x86_64">
+      <HintPath>Library\ScriptAssemblies\Unity.Sysroot.Linux_x86_64.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.VisualScripting.Flow">
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>
     </Reference>
@@ -807,32 +816,23 @@
     <Reference Include="Unity.Rider.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.Core">
-      <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.EditorCoroutines.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.EditorCoroutines.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.Shared.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.Shared.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Toolchain.Win-x86_64-Linux-x86_64">
-      <HintPath>Library\ScriptAssemblies\Unity.Toolchain.Win-x86_64-Linux-x86_64.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Timeline.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.TestTools.CodeCoverage.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.State">
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.State.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.VisualScripting.Core">
+      <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.SysrootPackage.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.SysrootPackage.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.EditorCoroutines.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.EditorCoroutines.Editor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
